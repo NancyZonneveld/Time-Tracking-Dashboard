@@ -1,0 +1,413 @@
+body {
+  font-family: Rubik, sans-serif;
+  font-weight: 300;
+  color: white;
+  background-color: hsl(224deg 63% 6% / 100%);
+
+  --light-purple: hsl(235deg 38% 65% / 100%);
+  --dark-purple: hsl(236deg 61% 25% / 100%);
+  --width-card: max(300px, 80vw);
+  --width-card-medium: max(310px, 96%);
+  --width-card-desktop: clamp(220px, 100%, 400px);
+}
+
+.list {
+  display: grid;
+  grid-auto-flow: row;
+  margin-bottom: 3rem;
+
+  /* Eerste kaartje */
+  grid-template-rows: fit-content;
+  margin-top: 2.5rem;
+
+  /* Alle volgende kaartjes */
+  grid-auto-rows: fit-content;
+  row-gap: 1.5rem;
+  justify-items: center;
+
+}
+
+.card {
+  background-color: var(--dark-purple);
+  width: var(--width-card);
+  border-radius: 1rem;
+}
+
+.card .cover {
+  display: flex;
+  justify-content: flex-end;
+  height: 80px;
+  width: 100%;
+  border-radius: 1rem 1rem 0 0;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.card .cover img {
+  height: 135px;
+  width: auto;
+  object-fit: cover;
+  margin-top: -17px;
+  margin-right: 0.5rem;
+
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2rem 1rem;
+  background-color: var(--dark-purple);
+  border-radius: 1rem;
+  width: max(300px, 80vw);
+  margin-top: -30px;
+  z-index: 1;
+  position: relative;
+}
+
+/* Dat hier relative moest heb ik van ChatGPT. 
+Ik ga nog even een extra video over position kijken, want dat had ik niet snel zelf verzonnen.*/
+
+.card .first-group,
+.card .second-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card .activity h1 {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.card .previous {
+  font-size: 1.2em;
+  color: var(--light-purple);
+  text-align: right;
+  padding-left: 0.5em;
+}
+
+.card .icon img {
+  height: 6px;
+  width: auto;
+}
+
+.card .hours {
+  font-size: 2.5em;
+}
+
+
+.work .cover {
+  background-color: #ff8b64;
+}
+
+.play .cover {
+  background-color: #56c2e6;
+}
+
+.study .cover {
+  background-color: #ff5e7d;
+}
+
+.exercise .cover {
+  background-color: #4bcf83;
+}
+
+.exercise .cover img {
+  height: 100px;
+  margin-top: 0;
+}
+
+.social .cover {
+  background-color: #7235d1;
+}
+
+.social .cover img {
+  height: 200px;
+  margin-top: -35px;
+}
+
+
+.selfcare .cover {
+  background-color: #f1c75b;
+}
+
+.selfcare .cover img {
+  margin-top: -30px;
+}
+
+
+/* eerste kaartje */
+
+.first-card {
+  background-color: var(--dark-purple);
+  width: var(--width-card);
+  border-radius: 1rem;
+}
+
+.cover-person {
+  display: flex;
+  align-items: center;
+  background-color: hsl(246deg 80% 60% / 100%);
+  border-radius: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  width: 100%;
+}
+
+.cover-person img {
+  width: 100px;
+  margin-right: 1.2rem;
+  margin-left: 1rem;
+  padding: 5px;
+
+  /* border gemaakt met padding anders heb je een anti-alias probleem */
+  background-color: white;
+  border-radius: 50%;
+}
+
+.report {
+  color: hsl(246deg 80% 80% / 100%);
+}
+
+/* width is nodig om overflow breakword uit reset css te laten werken bij een lange achternaam */
+.report-info {
+  width: calc(var(--width-card) - 130px);
+}
+
+
+.name {
+  color: #fbfaff;
+  font-size: 1.5em;
+  letter-spacing: .1rem;
+  line-height: 1.1em;
+  padding-right: 0.5rem;
+}
+
+.info-person {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.3em;
+  color: var(--light-purple);
+  font-weight: 400;
+  border-radius: 1em;
+}
+
+.info-person a {
+  color: var(--light-purple);
+  text-decoration: none;
+}
+
+.info-person a:hover {
+  color: white;
+}
+
+.info-person .active {
+  color: white;
+  cursor: default;
+}
+
+.card-info:hover {
+  background-color: hsl(236deg 45% 30% / 100%);
+  cursor: pointer;
+}
+
+.card-info:hover .icon {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.attribution,
+.attribution a {
+  color: var(--light-purple);
+  text-align: center;
+}
+
+@media (width >=690px) {
+  .list {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: row;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  /* De volgende 2 stukjes code via een hulplijn. Anders kreeg ik .first-card niet even breed als de kaartjes  */
+
+  .card:nth-of-type(even) {
+    justify-self: left;
+  }
+
+  .card:nth-of-type(odd) {
+    justify-self: right;
+  }
+
+  .first-card {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .card {
+    width: var(--width-card-medium);
+  }
+
+  .card-info {
+    width: 100%;
+  }
+
+}
+
+@media (width >=1050px) {
+
+  /* Dit stukje code heb ik van https://www.joshwcomeau.com/css/center-a-div/ */
+
+  .desktop-container {
+    position: fixed;
+    inset: 0px;
+    height: fit-content;
+    max-width: 100vw;
+    max-height: 100vh;
+    margin: auto;
+  }
+
+  .list {
+    grid-template-columns: 250px 1fr 1fr 1fr;
+    grid-auto-flow: row;
+    column-gap: 2rem;
+  }
+
+  .first-card {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cover-person {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 2rem;
+  }
+
+  .cover-person img {
+    margin-left: 0;
+  }
+
+  .name {
+    font-size: 2rem;
+    line-height: 1.2em;
+  }
+
+  .report-info {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    width: 220px;
+  }
+
+  .info-person {
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 2rem;
+    font-size: 1.2rem;
+    margin-top: 3.1rem;
+  }
+
+  .info-person a {
+    margin-bottom: 1rem;
+  }
+
+  .card {
+    width: var(--width-card-desktop);
+  }
+
+  .card-info {
+    height: 235px;
+  }
+
+
+  .card .cover img {
+    transform: scale(0.75);
+  }
+
+  .work .cover img {
+    margin-top: -28px;
+  }
+
+  .play .cover img {
+    margin-top: -20px;
+  }
+
+  .study .cover img {
+    margin-top: -30px;
+  }
+
+  .exercise .cover img {
+    margin-top: -12px;
+  }
+
+  .social .cover img {
+    margin-top: -47px;
+  }
+
+  .selfcare .cover img {
+    margin-top: -35px;
+  }
+
+  .card .first-group,
+  .card .second-group {
+    margin-left: 1rem;
+  }
+
+  .card .second-group {
+    display: block;
+  }
+
+  .card .previous {
+    text-align: left;
+    padding-left: 0;
+  }
+
+  .card .hours {
+    font-size: 3.5em;
+  }
+
+  .card .icon {
+    margin-right: 1rem;
+  }
+
+  .card:nth-of-type(even) {
+    justify-self: auto;
+  }
+
+  .card:nth-of-type(odd) {
+    justify-self: auto;
+  }
+
+}
+
+@media (width >=1300px) {
+
+  .desktop-container {
+    width: 1300px;
+  }
+
+}
